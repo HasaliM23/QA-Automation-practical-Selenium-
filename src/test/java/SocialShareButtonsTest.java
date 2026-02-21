@@ -108,6 +108,24 @@ public class SocialShareButtonsTest {
                 "Redirected URL is not pinterest!");
     }
 
+    @Test
+
+    public void email_Button_Testing(){
+
+       String orginalUrl = driver.getCurrentUrl();
+
+        WebElement email = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//i[@class='fa fa-envelope'])[2]")));
+        email.click();
+
+        wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe(orginalUrl)));
+
+        String newUrl = driver.getCurrentUrl();
+
+        Assert.assertEquals(newUrl,orginalUrl,"URL did not change after clicking Email button!");
+
+        Assert.assertTrue(newUrl.contains("Email"), "Redirected URL is not Email!");
+    }
+
 
 }
 
